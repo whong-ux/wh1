@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>漫遊臺中 - 景點推薦</title>
+
+  <!-- ==================== CSS 樣式區塊 ==================== -->
+  <style>
+    /* 1. 基本全域設定 */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "PingFang TC", "Microsoft JhengHei", "Heiti TC", sans-serif;
+      background-color: #f6f8f5; /* 清新自然的米綠白底色 */
+      color: #333333;
+      line-height: 1.8;
+      padding-bottom: 60px;
+    }
+
+    /* 2. 頁首橫幅 */
+    header {
+      background-color: #ffffff;
+      text-align: center;
+      padding: 50px 20px 40px;
+      border-bottom: 2px solid #e2ece3;
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-size: 32px;
+      color: #2d553b; /* 自然草木深綠 */
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 16px;
+      color: #647d6b;
+    }
+
+    /* 3. 景點主要容器 */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* 4. 景點卡片樣式 */
+    .spot-card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      border: 1px solid #e1ebe2;
+      margin-bottom: 45px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    }
+
+    /* 5. 景點圖片與滑鼠懸停（Hover）互動效果 */
+    .spot-image-box {
+      width: 100%;
+      height: 380px;
+      background-color: #e9eee9;
+      overflow: hidden;
+    }
+
+    .spot-image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 1; /* 正常狀態為完全不透明 */
+      transition: opacity 0.35s ease; /* 滑鼠移入移出平滑過渡 */
+    }
+
+    /* 滑鼠懸停（Hover）時的透明度回饋 */
+    .spot-image-box img:hover {
+      opacity: 0.78; /* 滑鼠移上去時變透明 */
+      cursor: pointer;
+    }
+
+    /* 6. 景點內容與文字說明 */
+    .spot-content {
+      padding: 30px;
+    }
+
+    .spot-category {
+      display: inline-block;
+      font-size: 13px;
+      color: #437252;
+      background-color: #eaf3ec;
+      padding: 3px 10px;
+      border-radius: 15px;
+      margin-bottom: 12px;
+    }
+
+    .spot-title {
+      font-size: 24px;
+      color: #203828;
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .spot-intro {
+      font-size: 15px;
+      color: #4f5a51;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+
+    /* 7. 詳細資訊折疊元件 (<details>) */
+    details {
+      background-color: #fafcf9;
+      border: 1px solid #e2ece3;
+      border-radius: 8px;
+      padding: 14px 18px;
+    }
+
+    summary {
+      font-weight: 600;
+      color: #2d553b;
+      cursor: pointer;
+      font-size: 15px;
+      outline: none;
+    }
+
+    summary:hover {
+      color: #1e3d29;
+    }
+
+    .details-body {
+      margin-top: 15px;
+      padding-top: 12px;
+      border-top: 1px dashed #dbe5dc;
+      font-size: 14px;
+      color: #555555;
+    }
+
+    .details-item {
+      margin-bottom: 10px;
+    }
+
+    .details-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .details-item strong {
+      color: #2d553b;
+    }
+
+    /* 8. 頁尾 */
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 14px;
+      color: #88998b;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HTML 內容區塊 ==================== -->
+
+  <!-- 網頁標頭 -->
+  <header>
+    <h1>漫遊臺中 ‧ 城市印記</h1>
+    <p>精選四處兼具歷史、藝術、文創與生態的經典風貌</p>
+  </header>
+
+  <!-- 景點推薦列表主區塊 -->
+  <main class="container">
+
+    <!-- 景點 1：臺中州廳 -->
+    <article class="spot-card">
+      <div class="spot-image-box">
+        <!-- 景點照片（滑鼠懸停有透明度變化回饋） -->
+        <img src="2.jpg" alt="臺中州廳日治時期經典仿巴洛克官署建築">
+      </div>
+      <div class="spot-content">
+        <span class="spot-category">國定古蹟 ‧ 西區</span>
+        <h2 class="spot-title">1. 臺中州廳</h2>
+        <p class="spot-intro">
+          由總督府營繕課建築師森山松之助設計，結合仿巴洛克與後期文藝復興式風格，立面採用典雅柱式、紅白相間橫帶與馬薩式屋頂，見證臺中市街百年風華。
+        </p>
+
+        <details>
+          <summary>點擊展開詳細資訊與交通指引 ▸</summary>
+          <div class="details-body">
+            <div class="details-item">
+              <strong>歷史背景：</strong>始建於 1913 年，日治時期作為臺中州的行政核心，戰後則長期做為臺中市政府辦公廳舍。歷經數年修復工程後，重現百年前古典官署的宏偉氣度。
+            </div>
+            <div class="details-item">
+              <strong>特色看點：</strong>對稱的轉角主入口、典雅的圓柱長廊、以及修復後重現的木結構中庭庭園。
+            </div>
+            <div class="details-item">
+              <strong>大眾運輸：</strong>臺中火車站沿中山路步行約 10 分鐘，或搭乘市區公車至「臺中州廳」站下車即達。
+            </div>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <!-- 景點 2：審計新村 -->
+    <article class="spot-card">
+      <div class="spot-image-box">
+        <img src="4.jpg" alt="審計新村文創聚落與老眷舍街景">
+      </div>
+      <div class="spot-content">
+        <span class="spot-category">文創聚落 ‧ 西區</span>
+        <h2 class="spot-title">2. 審計新村</h2>
+        <p class="spot-intro">
+          前身為臺灣省政府審計處員工舊眷舍，透過青年創業基地活化，保留老宿舍的紅磚灰牆與木質窗框，成為文創手作與甜點美食的聚集地。
+        </p>
+
+        <details>
+          <summary>點擊展開詳細資訊與交通指引 ▸</summary>
+          <div class="details-body">
+            <div class="details-item">
+              <strong>聚落特色：</strong>完整保留 1960 年代加強磚造二層樓老眷舍架構與戶外鐵樓梯，進駐各類手作工藝選品店、文青咖啡廳、人氣泡芙甜點，每逢週末更有熱鬧的「暮暮市集」。
+            </div>
+            <div class="details-item">
+              <strong>漫步建議：</strong>適合午後沿著二樓露台與步道散步拍照，感受新舊交融的生活質感。
+            </div>
+            <div class="details-item">
+              <strong>大眾運輸：</strong>搭乘市區公車 5、23、51 號至「英才郵局」站，下車後步行約 3 分鐘即可抵達。
+            </div>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <!-- 景點 3：臺中國家歌劇院 -->
+    <article class="spot-card">
+      <div class="spot-image-box">
+        <img src="1.jpg" alt="臺中國家歌劇院無樑柱曲牆美聲涵洞外觀">
+      </div>
+      <div class="spot-content">
+        <span class="spot-category">世界建築地標 ‧ 西屯區</span>
+        <h2 class="spot-title">3. 臺中國家歌劇院</h2>
+        <p class="spot-intro">
+          由普立茲克建築獎得主伊東豊雄操刀，徹底打破傳統梁柱框架，以 58 面「無樑柱曲牆」技術打造出被譽為「美聲涵洞（Sound Cave）」的世界級表演場館。
+        </p>
+
+        <details>
+          <summary>點擊展開詳細資訊與交通指引 ▸</summary>
+          <div class="details-body">
+            <div class="details-item">
+              <strong>建築亮點：</strong>全棟結構流動宛如自然洞窟，室內空間毫無垂直生硬的夾角；頂樓規劃有彷彿火山口造型的戶外空中花園，兼具表演藝術、選物文創與建築美學。
+            </div>
+            <div class="details-item">
+              <strong>參觀叮嚀：</strong>即使不購票進場看劇，也可自由參訪一樓公共大廳、文創商場以及頂樓空中花園。
+            </div>
+            <div class="details-item">
+              <strong>大眾運輸：</strong>搭乘臺灣大道公車幹線（300 號系列）至「新光/遠百」站，沿惠來路二段步行約 5 分鐘。
+            </div>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <!-- 景點 4：高美濕地 -->
+    <article class="spot-card">
+      <div class="spot-image-box">
+        <img src="3.jpg" alt="高美濕地夕陽餘暉與風力發電機景觀">
+      </div>
+      <div class="spot-content">
+        <span class="spot-category">生態保護區 ‧ 清水區</span>
+        <h2 class="spot-title">4. 高美濕地</h2>
+        <p class="spot-intro">
+          位於大甲溪出海口南側，擁有廣達 700 公頃的泥質與沙質灘地，搭配 800 公尺長的高架木棧道與海堤邊一字排開的風力發電機，為臺灣最著名的落日勝地。
+        </p>
+
+        <details>
+          <summary>點擊展開詳細資訊與交通指引 ▸</summary>
+          <div class="details-body">
+            <div class="details-item">
+              <strong>生態與景觀：</strong>棲息有豐富的雲林莞草、大安水蓑衣、彈塗魚以及大量招潮蟹；木棧道盡頭規劃為永續利用區，退潮時遊客可赤腳步入潮間帶親近泥灘。
+            </div>
+            <div class="details-item">
+              <strong>潮汐提醒：</strong>木棧道開放時間會依據每日農曆潮汐變動（滿潮前後各 1.5 小時木棧道會封閉），出發前建議先查詢官方潮汐時刻表。
+            </div>
+            <div class="details-item">
+              <strong>大眾運輸：</strong>搭乘臺鐵至清水火車站轉乘 178、179 號公車，或於臺中火車站搭乘 309 號公車直達「18號風車」站。
+            </div>
+          </div>
+        </details>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- 網頁頁尾 -->
+  <footer>
+    <p>© 臺中市景點輕旅行指南 ‧ 清新漫遊</p>
+  </footer>
+
+</body>
+</html>
