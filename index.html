@@ -1,173 +1,150 @@
-
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>台中市景點推薦</title>
-    <link rel="stylesheet" href="style.css">
+    <title>台中一日遊 Story Map 彈跳視窗</title>
+    <style>
+        /* 右上角按鈕樣式（與查看更多綠色外觀一致） */
+        .top-nav {
+            position: fixed;
+            top: 20px;
+            right: 25px;
+            z-index: 1000;
+        }
+
+        .storymap-btn {
+            display: inline-block;
+            background-color: #6c9977;
+            color: #ffffff !important;
+            text-decoration: none;
+            padding: 9px 20px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-family: Arial, "Microsoft JhengHei", sans-serif;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .storymap-btn:hover {
+            background-color: #456b4e;
+        }
+
+        /* 彈跳視窗遮罩（透過純 CSS :target 觸發，無須 JS） */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            z-index: 99999;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+        .modal-overlay:target {
+            display: flex;
+        }
+
+        /* 點擊遮罩背景直接關閉 */
+        .modal-backdrop-close {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* 彈窗內容容器 */
+        .modal-container {
+            background-color: #ffffff;
+            width: 92%;
+            max-width: 1100px;
+            height: 85vh;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, "Microsoft JhengHei", sans-serif;
+        }
+
+        .modal-header {
+            background-color: #e5ebdf;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #52785b;
+        }
+
+        .close-btn {
+            text-decoration: none;
+            font-size: 28px;
+            color: #52785b;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0 5px;
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover {
+            color: #222222;
+        }
+
+        .modal-body {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+        }
+
+        .modal-body iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .top-nav {
+                top: 15px;
+                right: 15px;
+            }
+
+            .storymap-btn {
+                padding: 7px 15px;
+                font-size: 13px;
+            }
+
+            .modal-container {
+                width: 95%;
+                height: 88vh;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- 網站上方的大圖 -->
-    <header class="banner">
-        <div class="標題文字">
-            <h1>台中市景點推薦</h1>
-            <p>發現台中，享受美好旅程</p>
-        </div>
-    </header>
+    <!-- 右上角彈窗觸發按鈕 -->
+    <div class="top-nav">
+        <a href="#storymap-popup" class="storymap-btn">台中一日遊 Story Map</a>
+    </div>
 
-    <!-- 網站介紹 -->
-    <main class="container">
-        <div class="網站介紹">
-            <h2>探索台中</h2>
-            <p>從城市建築到自然風景，帶你認識台中的特色景點。</p>
-        </div>
-
-        <!-- 四個景點 -->
-        <div class="景點排列">
-
-            <!-- 景點一：台中國家歌劇院 -->
-            <div class="景點卡片">
-                <img src="2.jpg"
-                     alt="台中國家歌劇院">
-
-                <div class="景點文字">
-                    <h3>台中國家歌劇院</h3>
-                    <p>欣賞獨特的建築設計，感受藝術與文化的魅力。</p>
-
-                    <details class="更多資訊">
-                        <summary>查看更多</summary>
-                        <div class="資訊內容">
-                            <h4>景點簡介</h4>
-                            <p>臺中國家歌劇院位於台中市西屯區，以特殊的曲牆建築設計聞名，是結合建築藝術與表演藝術的文化場館。館內設有不同規模的劇場，也有公共藝術及展覽空間，適合喜歡建築、藝術與文化的遊客。</p>
-
-                            <h4>景點地址</h4>
-                            <p>台中市西屯區惠來路二段101號</p>
-
-                            <h4>交通資訊</h4>
-                            <p>公車：可搭乘行經臺中國家歌劇院或市政府附近的公車，再步行前往。</p>
-                            <p>捷運：搭乘台中捷運綠線至市政府站，再步行或轉乘公車。</p>
-                            <p>自行開車：可利用附近停車場，停車資訊依現場公告為準。</p>
-
-                            <h4>推薦活動</h4>
-                            <p>欣賞特色建築、參觀公共藝術、在周邊散步，也可以事先查詢表演節目，安排一場藝術之旅。</p>
-
-                            <h4>旅遊小提醒</h4>
-                            <p>建議預留1至2小時參觀。若想欣賞表演，請提前確認演出時間及購票資訊。</p>
-                        </div>
-                    </details>
-                </div>
-            </div>
-
-            <!-- 景點二：臺中州廳 -->
-            <div class="景點卡片">
-                <img src="3.jpg"
-                     alt="臺中州廳">
-
-                <div class="景點文字">
-                    <h3>臺中州廳</h3>
-                    <p>走訪歷史建築，認識台中的城市故事。</p>
-
-                    <details class="更多資訊">
-                        <summary>查看更多</summary>
-                        <div class="資訊內容">
-                            <h4>景點簡介</h4>
-                            <p>臺中州廳是台中市具有代表性的歷史建築，建築外觀具有近代西洋官署建築的特色，整體風格莊重典雅。透過建築的設計與歷史背景，可以認識台中過去的行政發展與城市變遷，也是了解地方文化的好去處。</p>
-
-                            <h4>景點地址</h4>
-                            <p>台中市西區民權路99號</p>
-
-                            <h4>交通資訊</h4>
-                            <p>公車：可搭乘行經臺中州廳附近的市區公車，下車後步行前往。</p>
-                            <p>火車：可從臺中車站轉乘公車或步行前往，實際時間依路線而異。</p>
-                            <p>自行開車：可使用周邊停車場，再步行抵達。</p>
-
-                            <h4>推薦活動</h4>
-                            <p>欣賞歷史建築、觀察建築外觀與裝飾細節，並搭配附近的歷史街區安排散步行程。</p>
-
-                            <h4>旅遊小提醒</h4>
-                            <p>建議預留1至2小時。建築內部及展覽空間的開放範圍可能有所不同，出發前請確認最新開放公告。</p>
-                        </div>
-                    </details>
-                </div>
-            </div>
-
-            <!-- 景點三：審計新村 -->
-            <div class="景點卡片">
-                <img src="4.jpg"
-                     alt="審計新村">
-
-                <div class="景點文字">
-                    <h3>審計新村</h3>
-                    <p>逛逛文創小店，享受悠閒的散步時光。</p>
-
-                    <details class="更多資訊">
-                        <summary>查看更多</summary>
-                        <div class="資訊內容">
-                            <h4>景點簡介</h4>
-                            <p>審計新村原本是員工宿舍，經過活化後成為結合老建築、文創商店與青年創業的特色園區。園區內有手作商品、生活用品、甜點及飲品等店家，保留老房子的特色，也加入了許多新創意，是適合散步、拍照和探索特色小店的地方。</p>
-
-                            <h4>景點地址</h4>
-                            <p>台中市西區民生路368巷</p>
-
-                            <h4>交通資訊</h4>
-                            <p>公車：可搭乘行經民生路、向上路或附近地區的市區公車，再步行前往。</p>
-                            <p>火車：從臺中車站轉乘前往西區的市區公車，再步行抵達。</p>
-                            <p>自行開車：可停放於周邊合法停車場，再步行進入園區。</p>
-
-                            <h4>推薦活動</h4>
-                            <p>逛文創小店、購買手作商品、品嚐甜點與飲品、拍攝特色建築，也可以搭配草悟道及國立臺灣美術館安排半日遊。</p>
-
-                            <h4>旅遊小提醒</h4>
-                            <p>建議停留1.5至2.5小時。各店家的營業時間不同，假日也可能較多人，出發前可以先確認想逛的店家是否營業。</p>
-                        </div>
-                    </details>
-                </div>
-            </div>
-
-            <!-- 景點四：高美濕地 -->
-            <div class="景點卡片">
-                <img src="5.jpg"
-                     alt="高美濕地">
-
-                <div class="景點文字">
-                    <h3>高美濕地</h3>
-                    <p>欣賞海岸風景與夕陽，感受大自然的美好。</p>
-
-                    <details class="更多資訊">
-                        <summary>查看更多</summary>
-                        <div class="資訊內容">
-                            <h4>景點簡介</h4>
-                            <p>高美濕地位於台中市清水區，是具有豐富自然生態的海岸濕地。這裡有泥灘、濕地植物與多種鳥類，適合觀察生態及欣賞海岸風景。天氣晴朗時，遼闊的天空與夕陽景色也十分迷人，是台中知名的自然景點。</p>
-
-                            <h4>景點地址</h4>
-                            <p>台中市清水區美堤街附近</p>
-
-                            <h4>交通資訊</h4>
-                            <p>火車：搭乘台鐵至清水車站，再轉乘前往高美濕地方向的公車。</p>
-                            <p>公車：可搭乘前往高美濕地周邊的公車，出發前請確認當日班次。</p>
-                            <p>自行開車：可依導航前往周邊停車場，再步行至觀景區。</p>
-
-                            <h4>推薦活動</h4>
-                            <p>沿著木棧道欣賞濕地景觀、觀察鳥類與潮間帶生態、拍攝夕陽，也可以在附近的海岸自行車道欣賞風景。</p>
-
-                            <h4>旅遊小提醒</h4>
-                            <p>建議預留2至3小時。木棧道可能受到潮汐與安全因素影響而調整開放時間，出發前應查詢當日公告。海邊風勢可能較強，請留意天氣並遵守生態保護規定。</p>
-                        </div>
-                    </details>
-                </div>
-            </div>
-
-        </div>
-    </main>
-    <iframe src="https://www.google.com/maps/d/embed?mid=1Y-2yXS1jNHbgGNPIn5rDG2UnYBEjWw0&ehbc=2E312F" width="100%" height="600"></iframe>
-
-
-    <!-- 網頁底部 -->
-    <footer>
-        <p>台中市景點推薦｜探索城市之美</p>
-    </footer>
-
-</body>
-</html>
+    <!-- 彈跳視窗本體 -->
+    <div id="storymap-popup" class="modal-overlay">
+        <a href="#" class="modal-backdrop-close" aria-label="關閉視窗"></a>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>台中一日

@@ -1,10 +1,36 @@
-
 /* 全部網頁的基本設定 */
 body {
     margin: 0;
     font-family: Arial, "Microsoft JhengHei", sans-serif;
     background-color: #f5f6f0;
     color: #444444;
+}
+
+/* 右上角固定按鈕 */
+.top-nav {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999;
+}
+
+.storymap-btn {
+    background-color: #6c9977;
+    color: white;
+    padding: 10px 22px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: inherit;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.storymap-btn:hover {
+    background-color: #456b4e;
+    transform: translateY(-2px);
 }
 
 /* 網頁最上方的風景大圖 */
@@ -20,7 +46,6 @@ body {
     position: relative;
 }
 
-/* 在圖片上加一層淡淡的深色，讓文字清楚 */
 .banner::before {
     content: "";
     position: absolute;
@@ -98,7 +123,6 @@ body {
     transition: opacity 0.3s;
 }
 
-/* 滑鼠移到圖片上，圖片變透明 */
 .景點卡片 img:hover {
     opacity: 0.65;
 }
@@ -126,7 +150,6 @@ body {
     margin-top: 15px;
 }
 
-/* 查看更多按鈕 */
 .更多資訊 summary {
     display: inline-block;
     background-color: #6c9977;
@@ -138,12 +161,10 @@ body {
     transition: background-color 0.3s;
 }
 
-/* 隱藏預設的小三角形 */
 .更多資訊 summary::-webkit-details-marker {
     display: none;
 }
 
-/* 滑鼠移到查看更多時改變顏色 */
 .更多資訊 summary:hover {
     background-color: #456b4e;
 }
@@ -158,7 +179,6 @@ body {
     overflow-wrap: anywhere;
 }
 
-/* 詳細資訊的小標題 */
 .資訊內容 h4 {
     color: #52785b;
     font-size: 16px;
@@ -166,12 +186,10 @@ body {
     margin-bottom: 6px;
 }
 
-/* 第一個小標題不需要上方空間 */
 .資訊內容 h4:first-child {
     margin-top: 0;
 }
 
-/* 詳細資訊的內文 */
 .資訊內容 p {
     font-size: 14px;
     color: #555555;
@@ -193,8 +211,89 @@ footer p {
     font-size: 14px;
 }
 
-/* 手機版的排版 */
+/* ================= 彈跳視窗 (Modal) ================= */
+.modal-overlay {
+    display: none; /* 由 JS 切換為 flex */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 99999;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.modal-container {
+    background-color: #ffffff;
+    width: 90%;
+    max-width: 1100px;
+    height: 85vh;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    background-color: #e5ebdf;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #52785b;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #52785b;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 5px;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #222222;
+}
+
+.modal-body {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-body iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+/* 手機版排版 */
 @media (max-width: 600px) {
+    .top-nav {
+        top: 15px;
+        right: 15px;
+    }
+
+    .storymap-btn {
+        padding: 7px 15px;
+        font-size: 13px;
+    }
+
     .banner {
         height: 230px;
     }
@@ -212,7 +311,6 @@ footer p {
         padding: 0 15px;
     }
 
-    /* 手機上改成一欄 */
     .景點排列 {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -224,5 +322,10 @@ footer p {
 
     .景點文字 {
         padding: 15px;
+    }
+
+    .modal-container {
+        width: 95%;
+        height: 88vh;
     }
 }
